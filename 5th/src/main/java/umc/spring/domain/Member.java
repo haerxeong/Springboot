@@ -1,11 +1,8 @@
 package umc.spring.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
@@ -33,6 +30,13 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(10)")
+    private Gender gender;
+
+    @Column(nullable = false)
+    private Integer age;
+
     @Column(nullable = false, length = 40)
     private String address;
 
@@ -40,17 +44,13 @@ public class Member extends BaseEntity {
     private String specAddress;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
-    private Gender gender;
-
-    @Enumerated(EnumType.STRING)
-    private SocialType socialType;
-
-    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")   // 문자열 감싸기
     private MemberStatus status;
 
     private LocalDate inactiveDate;
+
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
 
     @Column(nullable = false, length = 50)
     private String email;

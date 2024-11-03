@@ -15,12 +15,17 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String body;
 
+    @Column(nullable = false)
     private Float score;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 }
