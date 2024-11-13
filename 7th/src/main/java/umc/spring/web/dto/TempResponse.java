@@ -14,4 +14,12 @@ public class TempResponse {
     public static class TempTestDTO{   // 범용적
         String testString;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TempExceptionDTO{
+        Integer flag;
+    }
 }
