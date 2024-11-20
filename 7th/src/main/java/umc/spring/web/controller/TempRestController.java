@@ -1,5 +1,6 @@
 package umc.spring.web.controller;
 
+import jakarta.servlet.Servlet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,6 @@ import umc.spring.web.dto.TempResponse;
 @RequestMapping("/temp")
 @RequiredArgsConstructor
 public class TempRestController {
-
     private final TempQueryService tempQueryService;
 
     @GetMapping("/test")
