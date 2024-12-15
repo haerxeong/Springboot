@@ -36,4 +36,9 @@ public class StoreQueryServiceImpl implements StoreQueryService {
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new IllegalArgumentException("Store not found"));
         return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
     }
+
+    @Override
+    public Page<Review> getMyReviewList(Long userId, Integer page) {
+        return reviewRepository.findAllByMemberId(userId, PageRequest.of(page - 1, 10));
+    }
 }

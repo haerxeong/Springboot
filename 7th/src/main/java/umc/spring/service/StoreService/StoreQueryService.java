@@ -11,4 +11,6 @@ public interface StoreQueryService {
     Optional<Store> findStore(Long id);
     List<Store> findStoresByNameAndScore(String name, Float score);
     Page<Review> getReviewList(Long StoreId, Integer page);
+    Page<Review> getMyReviewList(Long userId, Integer page);
+
 }
