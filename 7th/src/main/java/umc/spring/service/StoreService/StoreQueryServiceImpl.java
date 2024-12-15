@@ -34,7 +34,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public Page<Review> getReviewList(Long storeId, Integer page) {
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new IllegalArgumentException("Store not found"));
-        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+        return reviewRepository.findAllByStore(store, PageRequest.of(page - 1, 10));
     }
 
     @Override
