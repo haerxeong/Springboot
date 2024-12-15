@@ -26,6 +26,8 @@ public class StoreConverter {
                 .score(review.getScore())
                 .createdAt(review.getCreatedAt().toLocalDate())
                 .body(review.getBody())
+                .storeId(review.getStore().getId())
+                .reviewId(review.getId())
                 .build();
     }
     public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(Page<Review> reviewList){

@@ -40,6 +40,8 @@ public class StoreResponseDTO {
         String ownerNickname;
         Float score;
         String body;
+        Long storeId;
+        Long reviewId;
         LocalDate createdAt;
     }
 }
