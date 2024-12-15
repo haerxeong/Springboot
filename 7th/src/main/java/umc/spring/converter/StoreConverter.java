@@ -12,6 +12,14 @@ import java.util.stream.Collectors;
 
 public class StoreConverter {
 
+    public static Store toStore(StoreRequestDTO.RegisterDto request) {
+        return Store.builder()
+                .name(request.getName())
+                .address(request.getAddress())
+                .score(request.getScore())
+                .build();
+    }
+
     public static StoreResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review){
         return StoreResponseDTO.ReviewPreViewDTO.builder()
                 .ownerNickname(review.getMember().getName())

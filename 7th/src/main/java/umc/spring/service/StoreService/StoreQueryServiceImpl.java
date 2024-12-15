@@ -9,22 +9,31 @@ import umc.spring.domain.Store;
 import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.StoreRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class StoreQueryServiceImpl implements StoreQueryService {
+
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
 
     @Override
-    public void getReviewList(Long storeId, Integer page) {
-        Store store = storeRepository.findById(storeId).get();
-
-        Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
-        return StorePage;
+    public Optional<Store> findStore(Long id) {
+        return storeRepository.findById(id);
     }
 
     @Override
-    public Page<Review> getReviewList(Long StoreId, Integer page) {
-        return null;
+    public List<Store> findStoresByNameAndScore(String name, Float score) {
+        List<Store> filteredStores = storeRepository.dynamicQueryWithBooleanBuilder(name, score);
+        filteredStores.forEach(store -> System.out.println("Store: " + store));
+        return filteredStores;
+    }
+
+    @Override
+    public Page<Review> getReviewList(Long storeId, Integer page) {
+        Store store = storeRepository.findById(storeId).orElseThrow(() -> new IllegalArgumentException("Store not found"));
+        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
     }
 }

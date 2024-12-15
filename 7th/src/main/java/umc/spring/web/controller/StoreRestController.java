@@ -6,19 +6,16 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.converter.StoreConverter;
-import umc.spring.domain.Store;
-import umc.spring.service.StoreService.StoreCommandService;
 import umc.spring.service.StoreService.StoreQueryService;
-import umc.spring.validation.annotation.ExistRegion;
 import umc.spring.validation.annotation.ExistStore;
-import umc.spring.web.dto.StoreRequestDTO;
 import umc.spring.web.dto.StoreResponseDTO;
+import org.springframework.data.domain.Page;
+import umc.spring.domain.Review;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,7 +37,7 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId,@RequestParam(name = "page") Integer page){
-        storeQueryService.getReviewList(storeId,page);
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 }
