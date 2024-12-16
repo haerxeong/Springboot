@@ -15,6 +15,6 @@ public class MissionQueryServiceImpl implements MissionQueryService {
 
     @Override
     public Page<Mission> getMyMissions(Long memberId, Integer page) {
-        return missionRepository.findAllByMemberMission_Member_Id(memberId, PageRequest.of(page - 1, 10));
+        return missionRepository.findAllByMemberMissionList_Member_Id(memberId, PageRequest.of(page - 1, 10));
     }
 }

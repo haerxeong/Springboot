@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import umc.spring.domain.Mission;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
-    Page<Mission> findAllByMemberMission_Member_Id(Long memberId, Pageable pageable);
+    Page<Mission> findAllByMemberMissionList_Member_Id(Long memberId, Pageable pageable);
 }
